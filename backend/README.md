@@ -54,13 +54,34 @@ backend/
    copy .env.example .env
    ```
 3. Fill `.env` values:
-   - MongoDB Atlas URI
+   - **MongoDB**: either Atlas URI, or local Docker (see below)
    - JWT secret
-   - Stripe and/or Razorpay sandbox keys
-   - Firebase Admin credentials
+   - Stripe and/or Razorpay sandbox keys (optional for basic auth/rides)
+   - Firebase Admin: use `FIREBASE_SERVICE_ACCOUNT_JSON=./firebase-service-account.json` or fix PEM (optional until FCM / ID-token verify needed)
+
+### Local MongoDB (no Atlas required)
+
+From `backend/`:
+
+```bash
+docker compose up -d
+```
+
+Ensure `.env` contains:
+
+```env
+MONGODB_URI=mongodb://127.0.0.1:27017/snail_taxi
+```
+
 4. Start server:
    ```bash
    npm run dev
+   ```
+
+   Or with Node only:
+
+   ```bash
+   node src/server.js
    ```
 
 ## Core API Endpoints
