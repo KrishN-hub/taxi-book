@@ -38,7 +38,7 @@ initSocket(server);
 const PORT = process.env.PORT || 5000;
 connectDatabase()
   .then(() => {
-    server.listen(PORT, () => {
+    server.listen(PORT,'0.0.0.0', () => {
       // Keep startup message clear for local dev and deployment logs.
       console.log(`Server running on port ${PORT}`);
     });
